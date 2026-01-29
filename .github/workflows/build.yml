@@ -1,0 +1,44 @@
+name: Build QMK Firmware
+
+on:
+  push:
+    branches: [ master, main ]
+    paths:
+      - 'keyboards/caesar/tenkey/**'
+      - '.github/workflows/build.yml'
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout QMK
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    
+    - name: Install QMK CLI
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install qmk
+    
+    - name: Setup QMK
+      run: |
+        qmk setup -y
+    
+    - name: Compile Firmware
+      run: |
+        qmk compile -kb caesar/tenkey -km default
+    
+    - name: Upload Firmware
+      uses: actions/upload-artifact@v3
+      with:
+        name: caesar_tenkey_default
+        path: |
+          *.uf2
+          *.hex
+          *.bin
+        if-no-files-found: error
