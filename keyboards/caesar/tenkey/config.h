@@ -5,8 +5,9 @@
 
 // WS2812 RGB LED settings
 #define WS2812_DI_PIN GP16
-#define RGBLED_NUM 2
 #define RGBLIGHT_LED_COUNT 2
+
+#define WS2812_PIO_USE_PIO1
 
 // RGB Light effects
 #define RGBLIGHT_EFFECT_BREATHING
