@@ -22,9 +22,12 @@
         "encoder": true,
         "rgblight": true
     },
+    "ws2812": {
+        "pin": "GP16",
+        "driver": "vendor"
+    },
     "rgblight": {
         "led_count": 2,
-        "pin": "GP16",
         "animations": {
             "rainbow_mood": true,
             "rainbow_swirl": true,
