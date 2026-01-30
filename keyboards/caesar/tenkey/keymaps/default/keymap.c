@@ -4,17 +4,6 @@
 #include QMK_KEYBOARD_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /*
-     * ┌───┬───┬───┬───┬───┐
-     * │ESC│ / │ * │ - │BS │
-     * ├───┼───┼───┼───┼───┤
-     * │Tab│ 4 │ 5 │ 6 │   │
-     * ├───┼───┼───┼───┤Ent│
-     * │Ctl│ 1 │ 2 │ 3 │   │
-     * ├───┼───┼───┴───┴───┘
-     * │Sft│ 0 │   Space   │
-     * └───┴───┴───────────┘
-     */
     [0] = LAYOUT(
         KC_ESC,  KC_P7,   KC_P8,   KC_P9,   KC_BSPC,
         KC_TAB,  KC_P4,   KC_P5,   KC_P6,   KC_PENT,
@@ -23,9 +12,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-// ロータリーエンコーダーの設定（音量調整）
-#if defined(ENCODER_MAP_ENABLE)
-const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) }
-};
-#endif
+// ロータリーエンコーダーでRGB色相(Hue)を変更
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        if (clockwise) {
+            rgblight_increase_hue();  // 色相を増加（色が変わる）
+        } else {
+            rgblight_decrease_hue();  // 色相を減少（色が変わる）
+        }
+    }
+    return false;
+}
+
+// キーボード起動時にRGB LEDを有効化
+void keyboard_post_init_user(void) {
+    rgblight_enable();           // RGB LEDを有効化
+    rgblight_sethsv(0, 255, 128); // 初期色: 赤、彩度最大、明るさ中程度
+    rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT); // 静的点灯モード
+}
