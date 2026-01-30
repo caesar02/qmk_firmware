@@ -24,9 +24,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return false;
 }
 
-// キーボード起動時にRGB LEDを有効化
 void keyboard_post_init_user(void) {
-    rgblight_enable();           // RGB LEDを有効化
-    rgblight_sethsv(0, 255, 128); // 初期色: 赤、彩度最大、明るさ中程度
-    rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT); // 静的点灯モード
+    rgblight_enable_noeeprom();
+    rgblight_sethsv_noeeprom(0, 255, 128);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 }
