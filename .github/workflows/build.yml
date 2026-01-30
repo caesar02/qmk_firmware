@@ -20,14 +20,17 @@ jobs:
       with:
         submodules: recursive
     
-    - name: Install QMK CLI
+    - name: Install dependencies
       run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
         python3 -m pip install --upgrade pip
         python3 -m pip install qmk
     
-    - name: Setup QMK
+    - name: Initialize QMK
       run: |
-        qmk setup -y
+        qmk config user.qmk_home=$GITHUB_WORKSPACE
+        qmk git-submodule
     
     - name: Compile Firmware
       run: |
