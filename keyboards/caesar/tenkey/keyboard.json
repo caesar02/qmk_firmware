@@ -19,7 +19,18 @@
         "bootmagic": true,
         "mousekey": true,
         "extrakey": true,
-        "encoder": true
+        "encoder": true,
+        "rgblight": true
+    },
+    "rgblight": {
+        "led_count": 2,
+        "pin": "GP16",
+        "animations": {
+            "rainbow_mood": true,
+            "rainbow_swirl": true,
+            "static_gradient": true,
+            "breathing": true
+        }
     },
     "encoder": {
         "rotary": [
