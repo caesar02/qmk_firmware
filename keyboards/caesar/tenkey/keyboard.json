@@ -19,21 +19,7 @@
         "bootmagic": true,
         "mousekey": true,
         "extrakey": true,
-        "encoder": true,
-        "rgblight": true
-    },
-    "ws2812": {
-        "pin": "GP16",
-        "driver": "vendor"
-    },
-    "rgblight": {
-        "led_count": 2,
-        "animations": {
-            "rainbow_mood": true,
-            "rainbow_swirl": true,
-            "static_gradient": true,
-            "breathing": true
-        }
+        "encoder": true
     },
     "encoder": {
         "rotary": [
