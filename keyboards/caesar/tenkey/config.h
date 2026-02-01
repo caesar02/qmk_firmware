@@ -4,8 +4,8 @@
 #pragma once
 
 // WS2812 RGB LED settings
-#define WS2812_DI_PIN GP28
-#define RGBLIGHT_LED_COUNT 6
+#define WS2812_DI_PIN GP16
+#define RGBLIGHT_LED_COUNT 1
 
 #define WS2812_PIO_USE_PIO1
 
