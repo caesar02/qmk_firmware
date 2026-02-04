@@ -2,16 +2,19 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
+#include "key_override.h"
+
+const key_override_t ctrl_1_to_ctrl_x = ko_make_basic(MOD_MASK_CTRL, KC_P1, C(KC_X));
+const key_override_t ctrl_2_to_ctrl_c = ko_make_basic(MOD_MASK_CTRL, KC_P2, C(KC_C));
+const key_override_t ctrl_3_to_ctrl_v = ko_make_basic(MOD_MASK_CTRL, KC_P3, C(KC_V));
+
+const key_override_t *key_overrides[] = {
+    &ctrl_1_to_ctrl_x,
+    &ctrl_2_to_ctrl_c,
+    &ctrl_3_to_ctrl_v
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-const key_override_t ctrl_1_to_ctrl_x =
-    ko_make_basic(MOD_MASK_CTRL, KC_P1, C(KC_X));
-
-const key_override_t ctrl_2_to_ctrl_c =
-    ko_make_basic(MOD_MASK_CTRL, KC_P2, C(KC_C));
-
-const key_override_t ctrl_3_to_ctrl_v =
-    ko_make_basic(MOD_MASK_CTRL, KC_P3, C(KC_V));
 
     [0] = LAYOUT(
         KC_ESC,  KC_P7,   KC_P8,   KC_P9,   KC_BSPC,
@@ -46,9 +49,3 @@ void keyboard_post_init_user(void) {
     rgblight_sethsv_noeeprom(0, 255, 128);
     rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
 }
-
-const key_override_t *key_overrides[] = {
-    &ctrl_1_to_ctrl_x,
-    &ctrl_2_to_ctrl_c,
-    &ctrl_3_to_ctrl_v
-};
