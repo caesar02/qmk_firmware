@@ -4,13 +4,23 @@
 #include QMK_KEYBOARD_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
     [0] = LAYOUT(
         KC_ESC,  KC_P7,   KC_P8,   KC_P9,   KC_BSPC,
         KC_TAB,  KC_P4,   KC_P5,   KC_P6,   KC_PENT,
-        KC_LCTL, KC_P1,   KC_P2,   KC_P3,   DF(0),
-        KC_LSFT, KC_P0,   KC_SPC
+        KC_LCTL, KC_P1,   KC_P2,   KC_P3,   _______,
+        KC_LSFT, KC_P0,   LT(1, KC_SPC)
+    ),
+
+    [1] = LAYOUT(
+        _______, _______, _______, _______, _______,
+        _______, _______, KC_UP,   _______, _______,
+        _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,
+        _______, _______, _______
     )
+
 };
+
 
 // ロータリーエンコーダーでRGB色相(Hue)を変更
 bool encoder_update_user(uint8_t index, bool clockwise) {
